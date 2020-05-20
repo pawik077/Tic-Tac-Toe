@@ -38,7 +38,7 @@ int main() {
 	for(int i = 0; i < 3; ++i) {
 		for(int j = 0; j < 3; ++j) {
 			sq[i][j].setSize(sf::Vector2f(100, 100));
-			sq[i][j].setFillColor(sf::Color::Green);
+			sq[i][j].setFillColor(sf::Color(200, 200, 200));
 			sq[i][j].setPosition(sf::Vector2f(10, 40));
 			sq[i][j].move(sf::Vector2f(110 * i, 110 * j));
 		}
@@ -59,7 +59,7 @@ int main() {
 					}
 			}
 		}
-		window.clear(sf::Color::Black);
+		window.clear(sf::Color::White);
 		for(int i = 0; i < 3; ++i) {
 			for(int j = 0; j < 3; ++j)
 				window.draw(sq[i][j]);
