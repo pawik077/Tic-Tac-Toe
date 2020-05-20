@@ -31,6 +31,10 @@ int main() {
 	//std::cin >> numberToWin;
 	sf::RenderWindow window(sf::VideoMode(340, 370), "Tic-Tac-Toe");
 	sf::RectangleShape sq[3][3];
+	char board[3][3];
+	for(int i = 0; i < 3; ++i)
+		for(int j = 0; j < 3; ++j)
+			board[i][j] = 0;
 	for(int i = 0; i < 3; ++i) {
 		for(int j = 0; j < 3; ++j) {
 			sq[i][j].setSize(sf::Vector2f(100, 100));
@@ -46,8 +50,13 @@ int main() {
 				window.close();
 			if(event.type == sf::Event::MouseButtonPressed) {
 				if(event.mouseButton.button == sf::Mouse::Left)
-					if(button(event)!=-1)
-						std::cout << button(event);
+					if(button(event) != -1) {
+						int but = button(event);
+						if(board[but / 3][but % 3] == 0) {
+							board[but / 3][but % 3] = 'x';
+							std::cout << but;
+						}
+					}
 			}
 		}
 		window.clear(sf::Color::Black);
