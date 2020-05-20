@@ -31,6 +31,8 @@ int main() {
 	//std::cin >> numberToWin;
 	sf::RenderWindow window(sf::VideoMode(340, 370), "Tic-Tac-Toe");
 	sf::RectangleShape sq[3][3];
+	sf::RectangleShape upperBar(sf::Vector2f(340, 30));
+	upperBar.setFillColor(sf::Color(200, 200, 200));
 	char board[3][3];
 	for(int i = 0; i < 3; ++i)
 		for(int j = 0; j < 3; ++j)
@@ -64,6 +66,7 @@ int main() {
 			for(int j = 0; j < 3; ++j)
 				window.draw(sq[i][j]);
 		}
+		window.draw(upperBar);
 		window.display();
 	}
 	return 0;
