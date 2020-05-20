@@ -1,6 +1,27 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+int button(sf::Event event) {
+	if(event.mouseButton.x >= 10 && event.mouseButton.x <= 110 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140)
+		return 1;
+	else if(event.mouseButton.x >= 120 && event.mouseButton.x <= 220 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140)
+		return 2;
+	else if(event.mouseButton.x >= 230 && event.mouseButton.x <= 330 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140)
+		return 3;
+	else if(event.mouseButton.x >= 10 && event.mouseButton.x <= 110 && event.mouseButton.y >= 150 && event.mouseButton.y <= 250)
+		return 4;
+	else if(event.mouseButton.x >= 120 && event.mouseButton.x <= 220 && event.mouseButton.y >= 150 && event.mouseButton.y <= 250)
+		return 5;
+	else if(event.mouseButton.x >= 230 && event.mouseButton.x <= 330 && event.mouseButton.y >= 150 && event.mouseButton.y <= 250)
+		return 6;
+	else if(event.mouseButton.x >= 10 && event.mouseButton.x <= 110 && event.mouseButton.y >= 260 && event.mouseButton.y <= 360)
+		return 7;
+	else if(event.mouseButton.x >= 120 && event.mouseButton.x <= 220 && event.mouseButton.y >= 260 && event.mouseButton.y <= 360)
+		return 8;
+	else if(event.mouseButton.x >= 230 && event.mouseButton.x <= 330 && event.mouseButton.y >= 260 && event.mouseButton.y <= 360)
+		return 9;
+	return 0;
+	}
 int main() {
 	//int dimension;
 	//int numberToWin;
@@ -23,6 +44,11 @@ int main() {
 		while(window.pollEvent(event)) {
 			if(event.type == sf::Event::Closed)
 				window.close();
+			if(event.type == sf::Event::MouseButtonPressed) {
+				if(event.mouseButton.button == sf::Mouse::Left)
+					if(button(event)!=0)
+						std::cout << button(event);
+			}
 		}
 		window.clear(sf::Color::Black);
 		for(int i = 0; i < 3; ++i) {
