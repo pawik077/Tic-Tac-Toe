@@ -22,7 +22,7 @@ int button(sf::Event event) {
 		return 8;
 	return -1;
 	}
-bool checkColumns(char** board, int dim, int winCond) {
+bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]> board, int dim, int winCond) {
 	for(int col = 0; col < dim; ++col) {
 		bool win = true;
 		for(int row = 0; row < dim; ++row) {
