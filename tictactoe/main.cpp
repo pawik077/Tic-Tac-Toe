@@ -22,11 +22,13 @@ int button(sf::Event event) {
 		return 8;
 	return -1;
 	}
-bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]> board, int dim, int winCond) {
+bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dim, int winCond) {
 	for(int col = 0; col < dim; ++col) {
 		bool win = true;
 		for(int row = 0; row < dim; ++row) {
-			if(board[row][col] == 0 || board[row][col] == 'o') win = false;
+			if(board[row][col] == 0 || board[row][col] == 'o')
+				win = false;
+			std::cout << "";
 		}
 		if(win) return win;
 	}
@@ -34,10 +36,11 @@ bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]> board, int dim, int
 		bool win = true;
 		for(int row = 0; row < dim; ++row) {
 			if(board[row][col] == 0 || board[row][col] == 'x') win = false;
+			std::cout << "";
 		}
 		if(win) return win;
 	}
-
+	return false;
 }
 int main() {
 	int dimension = 3;
@@ -75,7 +78,7 @@ int main() {
 						int but = button(event);
 						if(board[but / 3][but % 3] == 0) {
 							board[but / 3][but % 3] = 'x';
-							std::cout << but;
+							if(checkColumns(board, 3, 3)) std::cout << "win";
 						}
 					}
 			}
