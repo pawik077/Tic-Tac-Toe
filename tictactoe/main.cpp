@@ -1,27 +1,20 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-int button(sf::Event event) {
-	if(event.mouseButton.x >= 10 && event.mouseButton.x <= 110 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140)
-		return 0;
-	else if(event.mouseButton.x >= 120 && event.mouseButton.x <= 220 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140)
-		return 1;
-	else if(event.mouseButton.x >= 230 && event.mouseButton.x <= 330 && event.mouseButton.y >= 40 && event.mouseButton.y <= 140)
-		return 2;
-	else if(event.mouseButton.x >= 10 && event.mouseButton.x <= 110 && event.mouseButton.y >= 150 && event.mouseButton.y <= 250)
-		return 3;
-	else if(event.mouseButton.x >= 120 && event.mouseButton.x <= 220 && event.mouseButton.y >= 150 && event.mouseButton.y <= 250)
-		return 4;
-	else if(event.mouseButton.x >= 230 && event.mouseButton.x <= 330 && event.mouseButton.y >= 150 && event.mouseButton.y <= 250)
-		return 5;
-	else if(event.mouseButton.x >= 10 && event.mouseButton.x <= 110 && event.mouseButton.y >= 260 && event.mouseButton.y <= 360)
-		return 6;
-	else if(event.mouseButton.x >= 120 && event.mouseButton.x <= 220 && event.mouseButton.y >= 260 && event.mouseButton.y <= 360)
-		return 7;
-	else if(event.mouseButton.x >= 230 && event.mouseButton.x <= 330 && event.mouseButton.y >= 260 && event.mouseButton.y <= 360)
-		return 8;
-	return -1;
+int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]>& sq) {
+	int mouseX = event.mouseButton.x;
+	int mouseY = event.mouseButton.y;
+	for(int i = 0; i < dimension; ++i) {
+		for(int j = 0; j < dimension; ++j) {
+			int sqX = sq[i][j].getPosition().x;
+			int sqY = sq[i][j].getPosition().y;
+			if(mouseX >= sqX && mouseX <= sqX + 100 && mouseY >= sqY && mouseY <= sqY + 100)
+				return i + j * dimension;
+		}
 	}
+	return -1;
+}
+
 bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dim, int winCond) {
 	for(int col = 0; col < dim; ++col) {
 		bool win = true;
@@ -77,8 +70,8 @@ int main() {
 				window.close();
 			if(event.type == sf::Event::MouseButtonPressed) {
 				if(event.mouseButton.button == sf::Mouse::Left)
-					if(button(event) != -1) {
-						int but = button(event);
+					if(button(event, dimension, sq) != -1) {
+						int but = button(event, dimension, sq);
 						if(board[but / dimension][but % dimension] == 0) {
 							board[but / dimension][but % dimension] = playerTag;
 							if(checkColumns(board, dimension, winCondition)) std::cout << "win";
