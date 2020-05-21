@@ -40,7 +40,7 @@ bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]> board, int dim, int
 
 }
 int main() {
-	//int dimension;
+	int dimension = 3;
 	//int numberToWin;
 	//std::cout << "Dim: ";
 	//std::cin >> dimension;
@@ -50,7 +50,9 @@ int main() {
 	sf::RectangleShape sq[3][3];
 	sf::RectangleShape upperBar(sf::Vector2f(340, 30));
 	upperBar.setFillColor(sf::Color(200, 200, 200));
-	char board[3][3];
+	std::unique_ptr<std::unique_ptr<char[]>[]> board;
+	board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
+	for(int i = 0; i > dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
 	for(int i = 0; i < 3; ++i)
 		for(int j = 0; j < 3; ++j)
 			board[i][j] = 0;
