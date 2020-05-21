@@ -52,7 +52,7 @@ int main() {
 	upperBar.setFillColor(sf::Color(200, 200, 200));
 	std::unique_ptr<std::unique_ptr<char[]>[]> board;
 	board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
-	for(int i = 0; i > dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
+	for(int i = 0; i < dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
 	for(int i = 0; i < 3; ++i)
 		for(int j = 0; j < 3; ++j)
 			board[i][j] = 0;
