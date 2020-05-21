@@ -49,18 +49,20 @@ int main() {
 	//std::cin >> dimension;
 	//std::cout << "Num: ";
 	//std::cin >> numberToWin;
-	sf::RenderWindow window(sf::VideoMode(340, 370), "Tic-Tac-Toe");
-	sf::RectangleShape sq[3][3];
-	sf::RectangleShape upperBar(sf::Vector2f(340, 30));
+	sf::RenderWindow window(sf::VideoMode(10 + 110 * dimension, 110 * dimension + 40), "Tic-Tac-Toe");
+	sf::RectangleShape upperBar(sf::Vector2f(10 + 110 * dimension, 30));
 	upperBar.setFillColor(sf::Color(200, 200, 200));
+	std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]> sq;
+	sq = std::make_unique<std::unique_ptr<sf::RectangleShape[]>[]>(dimension);
+	for(int i = 0; i < dimension; ++i) sq[i] = std::make_unique<sf::RectangleShape[]>(dimension);
 	std::unique_ptr<std::unique_ptr<char[]>[]> board;
 	board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
-	for(int i = 0; i < 3; ++i)
-		for(int j = 0; j < 3; ++j)
+	for(int i = 0; i < dimension; ++i)
+		for(int j = 0; j < dimension; ++j)
 			board[i][j] = 0;
-	for(int i = 0; i < 3; ++i) {
-		for(int j = 0; j < 3; ++j) {
+	for(int i = 0; i < dimension; ++i) {
+		for(int j = 0; j < dimension; ++j) {
 			sq[i][j].setSize(sf::Vector2f(100, 100));
 			sq[i][j].setFillColor(sf::Color(200, 200, 200));
 			sq[i][j].setPosition(sf::Vector2f(10, 40));
@@ -84,8 +86,8 @@ int main() {
 			}
 		}
 		window.clear(sf::Color::White);
-		for(int i = 0; i < 3; ++i) {
-			for(int j = 0; j < 3; ++j)
+		for(int i = 0; i < dimension; ++i) {
+			for(int j = 0; j < dimension; ++j)
 				window.draw(sq[i][j]);
 		}
 		window.draw(upperBar);
