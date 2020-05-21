@@ -22,6 +22,23 @@ int button(sf::Event event) {
 		return 8;
 	return -1;
 	}
+bool checkColumns(char** board, int dim, int winCond) {
+	for(int col = 0; col < dim; ++col) {
+		bool win = true;
+		for(int row = 0; row < dim; ++row) {
+			if(board[row][col] == 0 || board[row][col] == 'o') win = false;
+		}
+		if(win) return win;
+	}
+	for(int col = 0; col < dim; ++col) {
+		bool win = true;
+		for(int row = 0; row < dim; ++row) {
+			if(board[row][col] == 0 || board[row][col] == 'x') win = false;
+		}
+		if(win) return win;
+	}
+
+}
 int main() {
 	//int dimension;
 	//int numberToWin;
