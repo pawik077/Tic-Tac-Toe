@@ -44,7 +44,8 @@ bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dim, in
 }
 int main() {
 	int dimension = 3;
-	//int numberToWin;
+	char playerTag = 'x';
+	int winCondition = 3;
 	//std::cout << "Dim: ";
 	//std::cin >> dimension;
 	//std::cout << "Num: ";
@@ -78,9 +79,9 @@ int main() {
 				if(event.mouseButton.button == sf::Mouse::Left)
 					if(button(event) != -1) {
 						int but = button(event);
-						if(board[but / 3][but % 3] == 0) {
-							board[but / 3][but % 3] = 'x';
-							if(checkColumns(board, 3, 3)) std::cout << "win";
+						if(board[but / dimension][but % dimension] == 0) {
+							board[but / dimension][but % dimension] = playerTag;
+							if(checkColumns(board, dimension, winCondition)) std::cout << "win";
 						}
 					}
 			}
