@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <list>
 
 int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]>& sq) {
 	int mouseX = event.mouseButton.x;
@@ -35,8 +36,22 @@ bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dim, in
 	}
 	return false;
 }
+
+bool checkRows(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, int winCond, char tag) {
+	for(int row = 0; row < dimension; ++row) {
+		std::list<char> win;
+		for(int col = 0; col < dimension; ++col) {
+			if(board[row][col] == tag) win.push_back(board[row][col]);
+			std::cout << win.size();
+			if(win.size() == winCond) return true;
+			if(board[row][col] != tag) win.clear();
+		}
+	}
+	return false;
+}
+
 int main() {
-	int dimension = 3;
+	int dimension = 4;
 	char playerTag = 'x';
 	int winCondition = 3;
 	//std::cout << "Dim: ";
@@ -74,7 +89,7 @@ int main() {
 						int but = button(event, dimension, sq);
 						if(board[but / dimension][but % dimension] == 0) {
 							board[but / dimension][but % dimension] = playerTag;
-							if(checkColumns(board, dimension, winCondition)) std::cout << "win";
+							if(checkRows(board, dimension, winCondition, 'x')) std::cout << "win";
 						}
 					}
 			}
