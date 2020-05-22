@@ -33,7 +33,6 @@ bool checkRows(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension,
 		std::list<char> win;
 		for(int col = 0; col < dimension; ++col) {
 			if(board[row][col] == tag) win.push_back(board[row][col]);
-			std::cout << win.size();
 			if(win.size() == winCond) return true;
 			if(board[row][col] != tag) win.clear();
 		}
