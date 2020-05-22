@@ -58,6 +58,8 @@ int main() {
 	std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]> sq;
 	sq = std::make_unique<std::unique_ptr<sf::RectangleShape[]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) sq[i] = std::make_unique<sf::RectangleShape[]>(dimension);
+	std::unique_ptr<std::unique_ptr<sf::CircleShape[]>[]> circles = std::make_unique<std::unique_ptr<sf::CircleShape[]>[]>(dimension);
+	for(int i = 0; i < dimension; ++i) circles[i] = std::make_unique<sf::CircleShape[]>(dimension);
 	std::unique_ptr<std::unique_ptr<char[]>[]> board;
 	board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
