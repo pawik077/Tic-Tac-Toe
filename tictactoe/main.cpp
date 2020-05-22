@@ -111,6 +111,15 @@ int main() {
 		for(int i = 0; i < dimension; ++i) {
 			for(int j = 0; j < dimension; ++j) {
 				window.draw(sq[i][j]);
+				switch(board[i][j]) {
+					case 'x':
+						window.draw(crosses[i][j][0]);
+						window.draw(crosses[i][j][1]);
+						break;
+					case 'o':
+						window.draw(circles[i][j]);
+						break;
+				}
 			}
 		}
 		window.draw(upperBar);
