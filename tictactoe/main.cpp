@@ -70,6 +70,13 @@ int main() {
 			sq[i][j].setFillColor(sf::Color(200, 200, 200));
 			sq[i][j].setPosition(sf::Vector2f(10, 40));
 			sq[i][j].move(sf::Vector2f(110 * i, 110 * j));
+			circles[i][j].setRadius(40);
+			circles[i][j].setPointCount(20);
+			circles[i][j].setPosition(sf::Vector2f(20, 50));
+			circles[i][j].move(sf::Vector2f(110 * i, 110 * j));
+			circles[i][j].setFillColor(sf::Color(200, 200, 200));
+			circles[i][j].setOutlineThickness(-5);
+			circles[i][j].setOutlineColor(sf::Color::Black);
 		}
 	}
 	while(window.isOpen()) {
