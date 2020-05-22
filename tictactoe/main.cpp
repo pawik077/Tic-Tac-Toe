@@ -10,7 +10,7 @@ int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr
 			int sqX = sq[i][j].getPosition().x;
 			int sqY = sq[i][j].getPosition().y;
 			if(mouseX >= sqX && mouseX <= sqX + 100 && mouseY >= sqY && mouseY <= sqY + 100)
-				return i + j * dimension;
+				return i * dimension + j;
 		}
 	}
 	return -1;
