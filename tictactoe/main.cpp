@@ -40,6 +40,10 @@ bool checkRows(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension,
 	return false;
 }
 
+bool checkWin(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, int winCond, char tag) {
+	return checkRows(board, dimension, winCond, tag) || checkColumns(board, dimension, winCond, tag);
+}
+
 int main() {
 	int dimension = 4;
 	char playerTag = 'x';
@@ -79,7 +83,7 @@ int main() {
 						int but = button(event, dimension, sq);
 						if(board[but / dimension][but % dimension] == 0) {
 							board[but / dimension][but % dimension] = playerTag;
-							if(checkRows(board, dimension, winCondition, 'x')) std::cout << "win";
+							if(checkWin(board, dimension, winCondition, 'x')) std::cout << "win";
 						}
 					}
 			}
