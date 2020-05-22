@@ -59,6 +59,8 @@ int main() {
 	for(int i = 0; i < dimension; ++i) sq[i] = std::make_unique<sf::RectangleShape[]>(dimension);
 	std::unique_ptr<std::unique_ptr<sf::CircleShape[]>[]> circles = std::make_unique<std::unique_ptr<sf::CircleShape[]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) circles[i] = std::make_unique<sf::CircleShape[]>(dimension);
+	std::unique_ptr<std::unique_ptr<sf::RectangleShape[][2]>[]> crosses = std::make_unique<std::unique_ptr<sf::RectangleShape[][2]>[]>(dimension);
+	for(int i = 0; i < dimension; ++i) crosses[i] = std::make_unique<sf::RectangleShape[][2]>(dimension);
 	std::unique_ptr<std::unique_ptr<char[]>[]> board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
 	for(int i = 0; i < dimension; ++i)
@@ -77,6 +79,16 @@ int main() {
 			circles[i][j].setFillColor(sf::Color(200, 200, 200));
 			circles[i][j].setOutlineThickness(-5);
 			circles[i][j].setOutlineColor(sf::Color::Black);
+			crosses[i][j][0].setSize(sf::Vector2f(113.14, 6));
+			crosses[i][j][0].setFillColor(sf::Color::Black);
+			crosses[i][j][0].setPosition(sf::Vector2f(20, 50));
+			crosses[i][j][0].move(sf::Vector2f(110 * i, 110 * j));
+			crosses[i][j][0].rotate(45);
+			crosses[i][j][1].setSize(sf::Vector2f(113.14, 6));
+			crosses[i][j][1].setFillColor(sf::Color::Black);
+			crosses[i][j][1].setPosition(sf::Vector2f(100, 50));
+			crosses[i][j][1].move(sf::Vector2f(110 * i, 110 * j));
+			crosses[i][j][1].rotate(135);
 		}
 	}
 	while(window.isOpen()) {
@@ -97,8 +109,9 @@ int main() {
 		}
 		window.clear(sf::Color::White);
 		for(int i = 0; i < dimension; ++i) {
-			for(int j = 0; j < dimension; ++j)
+			for(int j = 0; j < dimension; ++j) {
 				window.draw(sq[i][j]);
+			}
 		}
 		window.draw(upperBar);
 		window.display();
