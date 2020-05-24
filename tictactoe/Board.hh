@@ -13,7 +13,7 @@ public:
 	void clear();
 	bool checkColumns(int winCond, char tag);
 	bool checkRows(int winCond, char tag);
-	bool checkDiagonals(int winCond, char tag) { return false; };
+	bool checkDiagonals(int winCond, char tag);
 	bool checkWin(int winCond, char tag);
 };
 
