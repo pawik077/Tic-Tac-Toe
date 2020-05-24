@@ -1,5 +1,4 @@
 #include "Board.hh"
-#include <list>
 
 Board::Board(int dimension) {
 	_board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);

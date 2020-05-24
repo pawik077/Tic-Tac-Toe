@@ -1,5 +1,7 @@
 #pragma once
 #include <memory>
+#include <list>
+
 class Board {
 private:
 	std::unique_ptr<std::unique_ptr<char[]>[]> _board;
