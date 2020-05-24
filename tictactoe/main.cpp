@@ -7,8 +7,8 @@ int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr
 	int mouseY = event.mouseButton.y;
 	for(int i = 0; i < dimension; ++i) {
 		for(int j = 0; j < dimension; ++j) {
-			int sqX = sq[i][j].getPosition().x;
-			int sqY = sq[i][j].getPosition().y;
+			int sqX = (int)sq[i][j].getPosition().x;
+			int sqY = (int)sq[i][j].getPosition().y;
 			if(mouseX >= sqX && mouseX <= sqX + 100 && mouseY >= sqY && mouseY <= sqY + 100)
 				return i * dimension + j;
 		}
@@ -29,7 +29,7 @@ int main() {
 	sf::ContextSettings windowSettings;
 	windowSettings.antialiasingLevel = 16;
 	sf::RenderWindow window(sf::VideoMode(10 + 110 * dimension, 110 * dimension + 40), "Tic-Tac-Toe", sf::Style::Titlebar | sf::Style::Close, windowSettings);
-	sf::RectangleShape upperBar(sf::Vector2f(10 + 110 * dimension, 30));
+	sf::RectangleShape upperBar(sf::Vector2f((float)(10 + 110 * dimension), 30));
 	upperBar.setFillColor(sf::Color(200, 200, 200));
 	std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]> sq = std::make_unique<std::unique_ptr<sf::RectangleShape[]>[]>(dimension);;
 	for(int i = 0; i < dimension; ++i) sq[i] = std::make_unique<sf::RectangleShape[]>(dimension);
@@ -42,11 +42,11 @@ int main() {
 			sq[i][j].setSize(sf::Vector2f(100, 100));
 			sq[i][j].setFillColor(sf::Color(200, 200, 200));
 			sq[i][j].setPosition(sf::Vector2f(10, 40));
-			sq[i][j].move(sf::Vector2f(110 * j, 110 * i));
+			sq[i][j].move(sf::Vector2f((float)(110 * j), (float)(110 * i)));
 			circles[i][j].setRadius(40);
 			circles[i][j].setPointCount(20);
 			circles[i][j].setPosition(sf::Vector2f(20, 50));
-			circles[i][j].move(sf::Vector2f(110 * j, 110 * i));
+			circles[i][j].move(sf::Vector2f((float)(110 * j), (float)(110 * i)));
 			circles[i][j].setFillColor(sf::Color(200, 200, 200));
 			circles[i][j].setOutlineThickness(-5);
 			circles[i][j].setOutlineColor(sf::Color::Black);
@@ -54,13 +54,13 @@ int main() {
 			crosses[i][j][0].setFillColor(sf::Color::Black);
 			crosses[i][j][0].setOrigin(57, 3);
 			crosses[i][j][0].setPosition(sf::Vector2f(60, 91));
-			crosses[i][j][0].move(sf::Vector2f(110 * j, 110 * i));
+			crosses[i][j][0].move(sf::Vector2f((float)(110 * j), (float)(110 * i)));
 			crosses[i][j][0].rotate(45);
 			crosses[i][j][1].setSize(sf::Vector2f(113, 5));
 			crosses[i][j][1].setFillColor(sf::Color::Black);
 			crosses[i][j][1].setOrigin(57, 3);
 			crosses[i][j][1].setPosition(sf::Vector2f(59, 90));
-			crosses[i][j][1].move(sf::Vector2f(110 * j, 110 * i));
+			crosses[i][j][1].move(sf::Vector2f((float)(110 * j), (float)(110 * i)));
 			crosses[i][j][1].rotate(135);
 		}
 	}
