@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <list>
+#include "Board.hh"
 
 int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]>& sq) {
 	int mouseX = event.mouseButton.x;
@@ -16,43 +16,11 @@ int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr
 	return -1;
 }
 
-bool checkColumns(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, int winCond, char tag) {
-	for(int col = 0; col < dimension; ++col) {
-		std::list<char> win;
-		for(int row = 0; row < dimension; ++row) {
-			if(board[row][col] == tag) win.push_back(board[row][col]);
-			if(win.size() == winCond) return true;
-			if(board[row][col] != tag) win.clear();
-		}
-	}
-	return false;
-}
-
-bool checkRows(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, int winCond, char tag) {
-	for(int row = 0; row < dimension; ++row) {
-		std::list<char> win;
-		for(int col = 0; col < dimension; ++col) {
-			if(board[row][col] == tag) win.push_back(board[row][col]);
-			if(win.size() == winCond) return true;
-			if(board[row][col] != tag) win.clear();
-		}
-	}
-	return false;
-}
-
-bool checkWin(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, int winCond, char tag) {
-	return checkRows(board, dimension, winCond, tag) || checkColumns(board, dimension, winCond, tag);
-}
-
-void clearBoard(const std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension) {
-	for(int i = 0; i < dimension; ++i)
-		for(int j = 0; j < dimension; ++j)
-			board[i][j] = 0;
-}
 int main() {
 	int dimension = 4;
 	char playerTag = 'x';
 	int winCondition = 3;
+	Board board(dimension);
 	//std::cout << "Dim: ";
 	//std::cin >> dimension;
 	//std::cout << "Num: ";
@@ -68,9 +36,6 @@ int main() {
 	for(int i = 0; i < dimension; ++i) circles[i] = std::make_unique<sf::CircleShape[]>(dimension);
 	std::unique_ptr<std::unique_ptr<sf::RectangleShape[][2]>[]> crosses = std::make_unique<std::unique_ptr<sf::RectangleShape[][2]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) crosses[i] = std::make_unique<sf::RectangleShape[][2]>(dimension);
-	std::unique_ptr<std::unique_ptr<char[]>[]> board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
-	for(int i = 0; i < dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
-	clearBoard(board, dimension);
 	for(int i = 0; i < dimension; ++i) {
 		for(int j = 0; j < dimension; ++j) {
 			sq[i][j].setSize(sf::Vector2f(100, 100));
@@ -107,11 +72,11 @@ int main() {
 				if(event.mouseButton.button == sf::Mouse::Left)
 					if(button(event, dimension, sq) != -1) {
 						int but = button(event, dimension, sq);
-						if(board[but / dimension][but % dimension] == 0) {
-							board[but / dimension][but % dimension] = playerTag;
-							if(checkWin(board, dimension, winCondition, 'x')) {
+						if(board(but / dimension, but % dimension) == 0) {
+							board(but / dimension, but % dimension) = playerTag;
+							if(board.checkWin(winCondition, 'x')) {
 								std::cout << "win";
-								clearBoard(board, dimension);
+								board.clear();
 							}
 						}
 					}
@@ -121,7 +86,7 @@ int main() {
 		for(int i = 0; i < dimension; ++i) {
 			for(int j = 0; j < dimension; ++j) {
 				window.draw(sq[i][j]);
-				switch(board[i][j]) {
+				switch(board(i,j)) {
 					case 'x':
 						window.draw(crosses[i][j][0]);
 						window.draw(crosses[i][j][1]);
