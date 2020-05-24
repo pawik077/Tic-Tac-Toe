@@ -52,7 +52,9 @@ int main() {
 	//std::cin >> dimension;
 	//std::cout << "Num: ";
 	//std::cin >> numberToWin;
-	sf::RenderWindow window(sf::VideoMode(10 + 110 * dimension, 110 * dimension + 40), "Tic-Tac-Toe");
+	sf::ContextSettings windowSettings;
+	windowSettings.antialiasingLevel = 16;
+	sf::RenderWindow window(sf::VideoMode(10 + 110 * dimension, 110 * dimension + 40), "Tic-Tac-Toe", sf::Style::Titlebar | sf::Style::Close, windowSettings);
 	sf::RectangleShape upperBar(sf::Vector2f(10 + 110 * dimension, 30));
 	upperBar.setFillColor(sf::Color(200, 200, 200));
 	std::unique_ptr<std::unique_ptr<sf::RectangleShape[]>[]> sq = std::make_unique<std::unique_ptr<sf::RectangleShape[]>[]>(dimension);;
@@ -79,14 +81,16 @@ int main() {
 			circles[i][j].setFillColor(sf::Color(200, 200, 200));
 			circles[i][j].setOutlineThickness(-5);
 			circles[i][j].setOutlineColor(sf::Color::Black);
-			crosses[i][j][0].setSize(sf::Vector2f(113.14, 6));
+			crosses[i][j][0].setSize(sf::Vector2f(113, 5));
 			crosses[i][j][0].setFillColor(sf::Color::Black);
-			crosses[i][j][0].setPosition(sf::Vector2f(20, 50));
+			crosses[i][j][0].setOrigin(57, 3);
+			crosses[i][j][0].setPosition(sf::Vector2f(60, 91));
 			crosses[i][j][0].move(sf::Vector2f(110 * j, 110 * i));
 			crosses[i][j][0].rotate(45);
-			crosses[i][j][1].setSize(sf::Vector2f(113.14, 6));
+			crosses[i][j][1].setSize(sf::Vector2f(113, 5));
 			crosses[i][j][1].setFillColor(sf::Color::Black);
-			crosses[i][j][1].setPosition(sf::Vector2f(100, 50));
+			crosses[i][j][1].setOrigin(57, 3);
+			crosses[i][j][1].setPosition(sf::Vector2f(59, 90));
 			crosses[i][j][1].move(sf::Vector2f(110 * j, 110 * i));
 			crosses[i][j][1].rotate(135);
 		}
