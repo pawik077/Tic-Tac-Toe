@@ -44,11 +44,10 @@ bool checkWin(std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, 
 	return checkRows(board, dimension, winCond, tag) || checkColumns(board, dimension, winCond, tag);
 }
 
-void clearBoard(const std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension, sf::RenderWindow& window) {
+void clearBoard(const std::unique_ptr<std::unique_ptr<char[]>[]>& board, int dimension) {
 	for(int i = 0; i < dimension; ++i)
 		for(int j = 0; j < dimension; ++j)
 			board[i][j] = 0;
-	window.clear(sf::Color::White);
 }
 int main() {
 	int dimension = 4;
@@ -71,7 +70,7 @@ int main() {
 	for(int i = 0; i < dimension; ++i) crosses[i] = std::make_unique<sf::RectangleShape[][2]>(dimension);
 	std::unique_ptr<std::unique_ptr<char[]>[]> board = std::make_unique<std::unique_ptr<char[]>[]>(dimension);
 	for(int i = 0; i < dimension; ++i) board[i] = std::make_unique<char[]>(dimension);
-	clearBoard(board, dimension, window);
+	clearBoard(board, dimension);
 	for(int i = 0; i < dimension; ++i) {
 		for(int j = 0; j < dimension; ++j) {
 			sq[i][j].setSize(sf::Vector2f(100, 100));
@@ -112,7 +111,7 @@ int main() {
 							board[but / dimension][but % dimension] = playerTag;
 							if(checkWin(board, dimension, winCondition, 'x')) {
 								std::cout << "win";
-								clearBoard(board, dimension, window);
+								clearBoard(board, dimension);
 							}
 						}
 					}
