@@ -19,6 +19,7 @@ int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr
 int main() {
 	int dimension = 4;
 	char playerTag = 'x';
+	char botTag = playerTag == 'x' ? 'o' : 'x';
 	int winCondition = 3;
 	Board board(dimension);
 	//std::cout << "Dim: ";
