@@ -17,7 +17,7 @@ int button(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr
 }
 
 bool win(int playerScore, int botScore) {
-	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + "-" + std::to_string(botScore) + " Bot";
+	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
 	sf::RenderWindow window(sf::VideoMode(500, 224), "YOU WIN");
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
@@ -92,7 +92,7 @@ bool win(int playerScore, int botScore) {
 }
 
 bool lose(int playerScore, int botScore) {
-	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + "-" + std::to_string(botScore) + " Bot";
+	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
 	sf::RenderWindow window(sf::VideoMode(580, 224), "YOU LOSE");
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
