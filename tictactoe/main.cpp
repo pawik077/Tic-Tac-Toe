@@ -63,7 +63,7 @@ int main() {
 		scoreText = "Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
 		scoreBanner.setString(scoreText);
 		scoreBanner.setOrigin(scoreBanner.getLocalBounds().width / 2, scoreBanner.getLocalBounds().height / 2);
-		scoreBanner.setPosition(55 * dimension - 12, 10);
+		scoreBanner.setPosition(static_cast<float>(55 * dimension - 12), 10);
 		sf::Event event;
 		while(window.pollEvent(event)) {
 			if(event.type == sf::Event::Closed)
