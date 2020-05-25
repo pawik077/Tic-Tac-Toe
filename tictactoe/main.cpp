@@ -14,6 +14,13 @@ int main() {
 	//std::cin >> dimension;
 	//std::cout << "Num: ";
 	//std::cin >> numberToWin;
+	sf::Font font;
+	font.loadFromFile("arial.ttf");
+	sf::Text scoreBanner;
+	scoreBanner.setFont(font);
+	scoreBanner.setCharacterSize(25);
+	scoreBanner.setFillColor(sf::Color::Black);
+	std::string scoreText;
 	sf::ContextSettings windowSettings;
 	windowSettings.antialiasingLevel = 16;
 	sf::RenderWindow window(sf::VideoMode(10 + 110 * dimension, 110 * dimension + 40), "Tic-Tac-Toe", sf::Style::Titlebar | sf::Style::Close, windowSettings);
@@ -53,6 +60,10 @@ int main() {
 		}
 	}
 	while(window.isOpen()) {
+		scoreText = "Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
+		scoreBanner.setString(scoreText);
+		scoreBanner.setOrigin(scoreBanner.getLocalBounds().width / 2, scoreBanner.getLocalBounds().height / 2);
+		scoreBanner.setPosition(55 * dimension - 12, 10);
 		sf::Event event;
 		while(window.pollEvent(event)) {
 			if(event.type == sf::Event::Closed)
@@ -90,6 +101,7 @@ int main() {
 			}
 		}
 		window.draw(upperBar);
+		window.draw(scoreBanner);
 		window.display();
 	}
 	return 0;
