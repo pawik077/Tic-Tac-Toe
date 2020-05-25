@@ -87,6 +87,7 @@ bool win(int playerScore, int botScore) {
 		window.draw(score);
 		window.display();
 	}
+	return false;
 }
 
 bool lose(int playerScore, int botScore) {
@@ -162,4 +163,5 @@ bool lose(int playerScore, int botScore) {
 		window.draw(score);
 		window.display();
 	}
+	return false;
 }
