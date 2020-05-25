@@ -15,5 +15,6 @@ public:
 	bool checkRows(int winCond, char tag);
 	bool checkDiagonals(int winCond, char tag);
 	bool checkWin(int winCond, char tag);
+	bool checkFull();
 };
 

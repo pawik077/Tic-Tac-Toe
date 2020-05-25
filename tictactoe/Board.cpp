@@ -79,3 +79,11 @@ bool Board::checkDiagonals(int winCond, char tag) {
 bool Board::checkWin(int winCond, char tag) {
 	return this->checkRows(winCond, tag) || this->checkColumns(winCond, tag) || this->checkDiagonals(winCond, tag);
 }
+bool Board::checkFull() {
+	for(int i = 0; i < _dimension; ++i) {
+		for(int j = 0; j < _dimension; ++j) {
+			if(_board[i][j] == 0) return false;
+		}
+	}
+	return true;
+}
