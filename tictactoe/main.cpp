@@ -96,6 +96,8 @@ int main() {
 	char playerTag = 'x';
 	char botTag = playerTag == 'x' ? 'o' : 'x';
 	int winCondition = 3;
+	int playerScore = 0;
+	int botScore = 0;
 	Board board(dimension);
 	//std::cout << "Dim: ";
 	//std::cin >> dimension;
@@ -151,7 +153,7 @@ int main() {
 						if(board(but / dimension, but % dimension) == 0) {
 							board(but / dimension, but % dimension) = playerTag;
 							if(board.checkWin(winCondition, 'x')) {
-								win();
+								win(playerScore, botScore);
 								board.clear();
 							}
 						}
