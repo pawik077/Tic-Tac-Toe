@@ -16,7 +16,7 @@ int field(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr<
 
 bool win(int playerScore, int botScore) {
 	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
-	sf::RenderWindow window(sf::VideoMode(500, 224), "YOU WIN");
+	sf::RenderWindow window(sf::VideoMode(580, 224), "YOU WIN");
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 	sf::Text announ;
@@ -46,7 +46,7 @@ bool win(int playerScore, int botScore) {
 	score.setCharacterSize(20);
 	score.setFillColor(sf::Color::Black);
 	announ.setOrigin(announ.getLocalBounds().width / 2, announ.getLocalBounds().height / 2);
-	announ.setPosition(sf::Vector2f(250, 30));
+	announ.setPosition(sf::Vector2f(290, 30));
 	b1text.setOrigin(b1text.getLocalBounds().width / 2, b1text.getLocalBounds().height / 2);
 	b1text.setPosition(sf::Vector2f(148, 171));
 	b2text.setOrigin(b2text.getLocalBounds().width / 2, b2text.getLocalBounds().height / 2);
