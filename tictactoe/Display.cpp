@@ -64,7 +64,7 @@ bool win(int playerScore, int botScore) {
 					if(event.mouseButton.button == sf::Mouse::Left) {
 						if(event.mouseButton.x >= button1.getPosition().x &&
 							 event.mouseButton.x <= button1.getPosition().x + button1.getSize().x &&
-							 event.mouseButton.y >= button1.getPosition().x &&
+							 event.mouseButton.y >= button1.getPosition().y &&
 							 event.mouseButton.y <= button1.getPosition().y + button1.getSize().y) {
 							window.close();
 							return false;
@@ -76,6 +76,23 @@ bool win(int playerScore, int botScore) {
 							return true;
 						}
 					}
+					break;
+				case sf::Event::MouseMoved:
+					if(event.mouseMove.x >= button1.getPosition().x &&
+						 event.mouseMove.x <= button1.getPosition().x + button1.getSize().x &&
+						 event.mouseMove.y >= button1.getPosition().y &&
+						 event.mouseMove.y <= button1.getPosition().y + button1.getSize().y)
+						button1.setFillColor(sf::Color(150, 150, 150));
+					else if(event.mouseMove.x >= button2.getPosition().x &&
+									event.mouseMove.x <= button2.getPosition().x + button2.getSize().x &&
+									event.mouseMove.y >= button2.getPosition().y &&
+									event.mouseMove.y <= button2.getPosition().y + button2.getSize().y)
+						button2.setFillColor(sf::Color(150, 150, 150));
+					else {
+						button1.setFillColor(sf::Color(200, 200, 200));
+						button2.setFillColor(sf::Color(200, 200, 200));
+					}
+					break;
 			}
 		}
 		window.clear(sf::Color::White);
@@ -140,7 +157,7 @@ bool lose(int playerScore, int botScore) {
 					if(event.mouseButton.button == sf::Mouse::Left) {
 						if(event.mouseButton.x >= button1.getPosition().x &&
 							 event.mouseButton.x <= button1.getPosition().x + button1.getSize().x &&
-							 event.mouseButton.y >= button1.getPosition().x &&
+							 event.mouseButton.y >= button1.getPosition().y &&
 							 event.mouseButton.y <= button1.getPosition().y + button1.getSize().y) {
 							window.close();
 							return false;
@@ -152,6 +169,23 @@ bool lose(int playerScore, int botScore) {
 							return true;
 						}
 					}
+					break;
+				case sf::Event::MouseMoved:
+					if(event.mouseMove.x >= button1.getPosition().x &&
+						 event.mouseMove.x <= button1.getPosition().x + button1.getSize().x &&
+						 event.mouseMove.y >= button1.getPosition().y &&
+						 event.mouseMove.y <= button1.getPosition().y + button1.getSize().y)
+						button1.setFillColor(sf::Color(150, 150, 150));
+					else if(event.mouseMove.x >= button2.getPosition().x &&
+									event.mouseMove.x <= button2.getPosition().x + button2.getSize().x &&
+									event.mouseMove.y >= button2.getPosition().y &&
+									event.mouseMove.y <= button2.getPosition().y + button2.getSize().y)
+						button2.setFillColor(sf::Color(150, 150, 150));
+					else {
+						button1.setFillColor(sf::Color(200, 200, 200));
+						button2.setFillColor(sf::Color(200, 200, 200));
+					}
+					break;
 			}
 		}
 		window.clear(sf::Color::White);
