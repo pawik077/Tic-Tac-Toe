@@ -28,7 +28,7 @@ bool win(int playerScore, int botScore) {
 	button1.setFillColor(sf::Color(200, 200, 200));
 	button2.setFillColor(sf::Color(200, 200, 200));
 	button1.setPosition(sf::Vector2f(80, 154));
-	button2.setPosition(sf::Vector2f(280, 154));
+	button2.setPosition(sf::Vector2f(360, 154));
 	announ.setFont(font);
 	announ.setString("YOU WIN!");
 	announ.setCharacterSize(100);
@@ -50,9 +50,9 @@ bool win(int playerScore, int botScore) {
 	b1text.setOrigin(b1text.getLocalBounds().width / 2, b1text.getLocalBounds().height / 2);
 	b1text.setPosition(sf::Vector2f(148, 171));
 	b2text.setOrigin(b2text.getLocalBounds().width / 2, b2text.getLocalBounds().height / 2);
-	b2text.setPosition(sf::Vector2f(349, 171));
+	b2text.setPosition(sf::Vector2f(429, 171));
 	score.setOrigin(score.getLocalBounds().width / 2, score.getLocalBounds().height / 2);
-	score.setPosition(250, 119);
+	score.setPosition(290, 119);
 	while(window.isOpen()) {
 		sf::Event event;
 		while(window.pollEvent(event)) {
