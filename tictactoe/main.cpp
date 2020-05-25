@@ -64,8 +64,11 @@ int main() {
 						if(board(but / dimension, but % dimension) == 0) {
 							board(but / dimension, but % dimension) = playerTag;
 							if(board.checkWin(winCondition, 'x')) {
-								win(playerScore, botScore);
-								board.clear();
+								++playerScore;
+								if(win(playerScore, botScore))
+									board.clear();
+								else 
+									window.close();
 							}
 						}
 					}
