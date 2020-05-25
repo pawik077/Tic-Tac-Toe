@@ -76,7 +76,7 @@ int main() {
 							board(but / dimension, but % dimension) = playerTag;
 							if(board.checkWin(winCondition, 'x')) {
 								++playerScore;
-								if(win(playerScore, botScore))
+								if(gameOver(playerScore, botScore, 'w'))
 									board.clear();
 								else 
 									window.close();
