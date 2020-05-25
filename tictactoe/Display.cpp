@@ -16,7 +16,7 @@ int field(sf::Event event, int dimension, const std::unique_ptr<std::unique_ptr<
 
 bool win(int playerScore, int botScore) {
 	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
-	sf::RenderWindow window(sf::VideoMode(580, 224), "YOU WIN");
+	sf::RenderWindow window(sf::VideoMode(580, 224), "YOU WIN", sf::Style::Titlebar);
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 	sf::Text announ;
@@ -57,9 +57,6 @@ bool win(int playerScore, int botScore) {
 		sf::Event event;
 		while(window.pollEvent(event)) {
 			switch(event.type) {
-				case sf::Event::Closed:
-					window.close();
-					break;
 				case sf::Event::MouseButtonPressed:
 					if(event.mouseButton.button == sf::Mouse::Left) {
 						if(event.mouseButton.x >= button1.getPosition().x &&
@@ -109,7 +106,7 @@ bool win(int playerScore, int botScore) {
 
 bool lose(int playerScore, int botScore) {
 	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
-	sf::RenderWindow window(sf::VideoMode(580, 224), "YOU LOSE");
+	sf::RenderWindow window(sf::VideoMode(580, 224), "YOU LOSE", sf::Style::Titlebar);
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 	sf::Text announ;
@@ -150,9 +147,6 @@ bool lose(int playerScore, int botScore) {
 		sf::Event event;
 		while(window.pollEvent(event)) {
 			switch(event.type) {
-				case sf::Event::Closed:
-					window.close();
-					break;
 				case sf::Event::MouseButtonPressed:
 					if(event.mouseButton.button == sf::Mouse::Left) {
 						if(event.mouseButton.x >= button1.getPosition().x &&
@@ -202,7 +196,7 @@ bool lose(int playerScore, int botScore) {
 
 bool draw(int playerScore, int botScore) {
 	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
-	sf::RenderWindow window(sf::VideoMode(580, 224), "DRAW");
+	sf::RenderWindow window(sf::VideoMode(580, 224), "DRAW", sf::Style::Titlebar);
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 	sf::Text announ;
@@ -243,9 +237,6 @@ bool draw(int playerScore, int botScore) {
 		sf::Event event;
 		while(window.pollEvent(event)) {
 			switch(event.type) {
-				case sf::Event::Closed:
-					window.close();
-					break;
 				case sf::Event::MouseButtonPressed:
 					if(event.mouseButton.button == sf::Mouse::Left) {
 						if(event.mouseButton.x >= button1.getPosition().x &&
