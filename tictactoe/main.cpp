@@ -67,7 +67,9 @@ int main() {
 		sf::Event event;
 		while(window.pollEvent(event)) {
 			if(event.type == sf::Event::Closed)
-				window.close();
+				if(confirm('q')) {
+					window.close();
+				}
 			if(event.type == sf::Event::MouseButtonPressed) {
 				if(event.mouseButton.button == sf::Mouse::Left)
 					if(field(event, dimension, sq) != -1) {
