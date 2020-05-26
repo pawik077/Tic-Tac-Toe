@@ -17,4 +17,3 @@ public:
 	bool checkWin(int winCond, char tag);
 	bool checkFull();
 };
-

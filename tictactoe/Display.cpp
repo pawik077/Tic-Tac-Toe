@@ -126,7 +126,7 @@ bool confirm(char state) {
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 	sf::Text mainText, subText, b1text, b2text;
-	sf::RectangleShape button1(sf::Vector2f(80,40)), button2(sf::Vector2f(80,40));
+	sf::RectangleShape button1(sf::Vector2f(80, 40)), button2(sf::Vector2f(80, 40));
 	button1.setFillColor(sf::Color(200, 200, 200));
 	button2.setFillColor(sf::Color(200, 200, 200));
 	button1.setPosition(sf::Vector2f(100, 90));
