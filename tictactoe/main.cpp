@@ -11,7 +11,7 @@ int main() {
 	do {
 		std::cout << "Dim: ";
 		std::cin >> dimension;
-		while(std::cin.fail() || dimension < 3 && dimension > 10) {
+		while(std::cin.fail() || dimension < 3 || dimension > 10) {
 			std::cerr << "Wrong dim!" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
@@ -20,7 +20,7 @@ int main() {
 		}
 		std::cout << "Win: ";
 		std::cin >> winCondition;
-		while(std::cin.fail() || winCondition > dimension) {
+		while(std::cin.fail() || winCondition > dimension || winCondition < 3) {
 			std::cerr << "Wrong win!" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
@@ -112,7 +112,7 @@ int main() {
 							int but = field(event, dimension, sq);
 							if(board(but / dimension, but % dimension) == 0) {
 								board(but / dimension, but % dimension) = playerTag;
-								if(board.checkWin(winCondition, 'x')) {
+								if(board.checkWin(winCondition, playerTag)) {
 									++playerScore;
 									if(gameOver(playerScore, botScore, 'w'))
 										board.clear();
