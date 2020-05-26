@@ -122,46 +122,46 @@ bool gameOver(int playerScore, int botScore, char state) {
 }
 
 bool confirm(char state) {
-	sf::RenderWindow window(sf::VideoMode(1000, 224), "CONFIRM", sf::Style::Titlebar);
+	sf::RenderWindow window(sf::VideoMode(600, 146), "CONFIRM", sf::Style::Titlebar);
 	sf::Font font;
 	font.loadFromFile("arial.ttf");
 	sf::Text mainText, subText, b1text, b2text;
-	sf::RectangleShape button1(sf::Vector2f(100,50)), button2(sf::Vector2f(100,50));
+	sf::RectangleShape button1(sf::Vector2f(80,40)), button2(sf::Vector2f(80,40));
 	button1.setFillColor(sf::Color(200, 200, 200));
 	button2.setFillColor(sf::Color(200, 200, 200));
-	button1.setPosition(sf::Vector2f(250, 148));
-	button2.setPosition(sf::Vector2f(650, 148));
+	button1.setPosition(sf::Vector2f(100, 90));
+	button2.setPosition(sf::Vector2f(420, 90));
 	mainText.setFont(font);
-	mainText.setCharacterSize(50);
-	mainText.setFillColor(sf::Color::White);
+	mainText.setCharacterSize(30);
+	mainText.setFillColor(sf::Color::Black);
 	subText.setFont(font);
-	subText.setCharacterSize(40);
-	subText.setFillColor(sf::Color::White);
+	subText.setCharacterSize(25);
+	subText.setFillColor(sf::Color::Black);
 	subText.setString("You will lose current game state");
 	subText.setOrigin(subText.getLocalBounds().width / 2, subText.getLocalBounds().height / 2);
-	subText.setPosition(500, 100);
+	subText.setPosition(300, 55);
 	b1text.setFont(font);
 	b1text.setString("Yes");
-	b1text.setCharacterSize(30);
-	b1text.setFillColor(sf::Color::White);
+	b1text.setCharacterSize(20);
+	b1text.setFillColor(sf::Color::Black);
 	b2text.setFont(font);
 	b2text.setString("No");
-	b2text.setCharacterSize(30);
-	b2text.setFillColor(sf::Color::White);
+	b2text.setCharacterSize(20);
+	b2text.setFillColor(sf::Color::Black);
 	b1text.setOrigin(b1text.getLocalBounds().width / 2, b1text.getLocalBounds().height / 2);
-	b1text.setPosition(sf::Vector2f(301, 165));
+	b1text.setPosition(sf::Vector2f(140, 105));
 	b2text.setOrigin(b2text.getLocalBounds().width / 2, b2text.getLocalBounds().height / 2);
-	b2text.setPosition(sf::Vector2f(698, 165));
+	b2text.setPosition(sf::Vector2f(458, 105));
 	switch(state) {
 		case 'c':
 			mainText.setString("Are you sure you want to change settings?");
 			mainText.setOrigin(mainText.getLocalBounds().width / 2, mainText.getLocalBounds().height / 2);
-			mainText.setPosition(sf::Vector2f(500, 30));
+			mainText.setPosition(sf::Vector2f(300, 20));
 			break;
 		case 'q':
 			mainText.setString("Are you sure you want to quit?");
 			mainText.setOrigin(mainText.getLocalBounds().width / 2, mainText.getLocalBounds().height / 2);
-			mainText.setPosition(sf::Vector2f(500, 30));
+			mainText.setPosition(sf::Vector2f(300, 20));
 			break;
 	}
 	while(window.isOpen()) {
@@ -203,7 +203,7 @@ bool confirm(char state) {
 					break;
 			}
 		}
-		window.clear(sf::Color::Black);
+		window.clear(sf::Color::White);
 		window.draw(mainText);
 		window.draw(subText);
 		window.draw(button1);
