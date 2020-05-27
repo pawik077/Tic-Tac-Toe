@@ -94,6 +94,7 @@ int main() {
 			scoreBanner.setOrigin(scoreBanner.getLocalBounds().width / 2, scoreBanner.getLocalBounds().height / 2);
 			scoreBanner.setPosition(static_cast<float>(55 * dimension - 12), 10);
 			sf::Event event;
+			int but = -1;
 			while(window.pollEvent(event)) {
 				if(event.type == sf::Event::Closed)
 					if(confirm('q')) {
@@ -111,36 +112,11 @@ int main() {
 							}
 						}
 						if(field(event, dimension, sq) != -1 && playerTurn) {
-							int but = field(event, dimension, sq);
-							if(board(but / dimension, but % dimension) == 0) {
-								board(but / dimension, but % dimension) = playerTag;
-								playerTurn = false;
-								if(board.checkWin(winCondition, playerTag)) {
-									++playerScore;
-									if(gameOver(playerScore, botScore, 'w'))
-										board.clear();
-									else
-										window.close();
-								}
-							}
+							but = field(event, dimension, sq);
+
 						}
 					}
 				}
-			}
-			if(!playerTurn) {
-				//bot round
-				if(board.checkWin(winCondition, botTag)) {
-					++botScore;
-					if(gameOver(playerScore, botScore, 'l'))
-						board.clear();
-					window.close();
-				}
-			}
-			if(board.checkFull()) {
-				if(gameOver(playerScore, botScore, 'd'))
-					board.clear();
-				else
-					window.close();
 			}
 			window.clear(sf::Color::White);
 			for(int i = 0; i < dimension; ++i) {
@@ -160,6 +136,35 @@ int main() {
 			window.draw(upperBar);
 			window.draw(scoreBanner);
 			window.display();
+			if(board.checkFull()) {
+				if(gameOver(playerScore, botScore, 'd'))
+					board.clear();
+				else
+					window.close();
+			}
+			if(playerTurn) {
+				if(board(but / dimension, but % dimension) == 0) {
+					board(but / dimension, but % dimension) = playerTag;
+					playerTurn = false;
+					if(board.checkWin(winCondition, playerTag)) {
+						++playerScore;
+						if(gameOver(playerScore, botScore, 'w'))
+							board.clear();
+						else
+							window.close();
+					}
+				} else {
+					but = -1;
+				}
+			} else {
+				//bot round
+				if(board.checkWin(winCondition, botTag)) {
+					++botScore;
+					if(gameOver(playerScore, botScore, 'l'))
+						board.clear();
+					window.close();
+				}
+			}
 		}
 	} while(changeSettings);
 	return 0;
