@@ -8,6 +8,7 @@ int main() {
 	char playerTag;
 	char botTag;
 	bool changeSettings;
+	bool playerTurn;
 	do {
 		std::cout << "Dim: ";
 		std::cin >> dimension;
@@ -37,6 +38,7 @@ int main() {
 			std::cin >> playerTag;
 		}
 		char botTag = playerTag == 'x' ? 'o' : 'x';
+		playerTurn = playerTag == 'x';
 		int playerScore = 0;
 		int botScore = 0;
 		changeSettings = false;
