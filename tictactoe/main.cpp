@@ -37,7 +37,7 @@ int main() {
 			std::cout << "Tag: ";
 			std::cin >> playerTag;
 		}
-		char botTag = playerTag == 'x' ? 'o' : 'x';
+		botTag = playerTag == 'x' ? 'o' : 'x';
 		playerTurn = playerTag == 'x';
 		int playerScore = 0;
 		int botScore = 0;
