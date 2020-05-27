@@ -126,6 +126,10 @@ int main() {
 					}
 				}
 			}
+			if(board.checkFull()) {
+				gameOver(playerScore, botScore, 'd');
+				board.clear();
+			}
 			window.clear(sf::Color::White);
 			for(int i = 0; i < dimension; ++i) {
 				for(int j = 0; j < dimension; ++j) {
