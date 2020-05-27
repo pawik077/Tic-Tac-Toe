@@ -110,10 +110,11 @@ int main() {
 								changeSettings = true;
 							}
 						}
-						if(field(event, dimension, sq) != -1) {
+						if(field(event, dimension, sq) != -1 && playerTurn) {
 							int but = field(event, dimension, sq);
 							if(board(but / dimension, but % dimension) == 0) {
 								board(but / dimension, but % dimension) = playerTag;
+								playerTurn = false;
 								if(board.checkWin(winCondition, playerTag)) {
 									++playerScore;
 									if(gameOver(playerScore, botScore, 'w'))
@@ -124,6 +125,15 @@ int main() {
 							}
 						}
 					}
+				}
+			}
+			if(!playerTurn) {
+				//bot round
+				if(board.checkWin(winCondition, botTag)) {
+					++botScore;
+					if(gameOver(playerScore, botScore, 'l'))
+						board.clear();
+					window.close();
 				}
 			}
 			if(board.checkFull()) {
