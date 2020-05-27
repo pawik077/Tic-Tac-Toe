@@ -80,8 +80,10 @@ bool gameOver(int playerScore, int botScore, char state) {
 							 event.mouseButton.x <= button1.getPosition().x + button1.getSize().x &&
 							 event.mouseButton.y >= button1.getPosition().y &&
 							 event.mouseButton.y <= button1.getPosition().y + button1.getSize().y) {
-							window.close();
-							return false;
+							if(confirm('q')) {
+								window.close();
+								return false;
+							}
 						} else if(event.mouseButton.x >= button2.getPosition().x &&
 											event.mouseButton.x <= button2.getPosition().x + button2.getSize().x &&
 											event.mouseButton.y >= button2.getPosition().y &&
