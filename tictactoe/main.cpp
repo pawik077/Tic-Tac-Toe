@@ -3,6 +3,7 @@
 #include "Display.hh"
 
 int main() {
+	srand(time(NULL));
 	int dimension;
 	int winCondition;
 	char playerTag;
@@ -39,6 +40,7 @@ int main() {
 		}
 		botTag = playerTag == 'x' ? 'o' : 'x';
 		playerTurn = playerTag == 'x';
+		char winner = 0;
 		int playerScore = 0;
 		int botScore = 0;
 		changeSettings = false;
@@ -136,9 +138,29 @@ int main() {
 			window.draw(upperBar);
 			window.draw(scoreBanner);
 			window.display();
-			if(board.checkFull()) {
-				if(gameOver(playerScore, botScore, 'd'))
+			if(winner == 'p') {
+				++playerScore;
+				winner = 0;
+				if(gameOver(playerScore, botScore, 'w')) {
 					board.clear();
+					playerTurn = playerTag == 'x';
+				}
+				else
+					window.close();
+			} else if(winner == 'b') {
+				++botScore;
+				winner = 0;
+				if(gameOver(playerScore, botScore, 'l')) {
+					board.clear();
+					playerTurn = playerTag == 'x';
+				}
+				else
+					window.close();
+			} else if(board.checkFull()) {
+				if(gameOver(playerScore, botScore, 'd')) {
+					board.clear();
+					playerTurn = playerTag == 'x';
+				}
 				else
 					window.close();
 			}
@@ -147,22 +169,20 @@ int main() {
 					board(but / dimension, but % dimension) = playerTag;
 					playerTurn = false;
 					if(board.checkWin(winCondition, playerTag)) {
-						++playerScore;
-						if(gameOver(playerScore, botScore, 'w'))
-							board.clear();
-						else
-							window.close();
+						winner = 'p';
 					}
 				} else {
 					but = -1;
 				}
 			} else {
-				//bot round
+				int pole;
+				do {
+					pole = rand() % (dimension * dimension);
+				} while(board(pole / dimension, pole % dimension) != 0);
+				board(pole / dimension, pole % dimension) = botTag;
+				playerTurn = true;
 				if(board.checkWin(winCondition, botTag)) {
-					++botScore;
-					if(gameOver(playerScore, botScore, 'l'))
-						board.clear();
-					window.close();
+					winner = 'b';
 				}
 			}
 		}
