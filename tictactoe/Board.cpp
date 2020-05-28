@@ -78,7 +78,7 @@ bool Board::checkDiagonals(char tag) const {
 }
 
 bool Board::checkWin(char tag) const {
-	return this->checkRows(tag) || this->checkColumns(tag) || this->checkDiagonals(tag);
+	return checkRows(tag) || checkColumns(tag) || checkDiagonals(tag);
 }
 
 bool Board::checkFull() const {
