@@ -18,7 +18,7 @@ bool gameOver(int playerScore, int botScore, char state) {
 	std::string scoreString = "Current score: Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
 	sf::RenderWindow window(sf::VideoMode(580, 224), "", sf::Style::Titlebar);
 	sf::Font font;
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 	sf::Text announ;
 	sf::Text b1text;
 	sf::Text b2text;
@@ -126,7 +126,7 @@ bool gameOver(int playerScore, int botScore, char state) {
 bool confirm(char state) {
 	sf::RenderWindow window(sf::VideoMode(600, 146), "CONFIRM", sf::Style::Titlebar);
 	sf::Font font;
-	font.loadFromFile("arial.ttf");
+	font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 	sf::Text mainText, subText, b1text, b2text;
 	sf::RectangleShape button1(sf::Vector2f(80, 40)), button2(sf::Vector2f(80, 40));
 	button1.setFillColor(sf::Color(200, 200, 200));

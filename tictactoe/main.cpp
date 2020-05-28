@@ -46,7 +46,7 @@ int main() {
 		changeSettings = false;
 		Board board(dimension);
 		sf::Font font;
-		font.loadFromFile("arial.ttf");
+		font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 		sf::Text scoreBanner;
 		scoreBanner.setFont(font);
 		scoreBanner.setCharacterSize(25);
