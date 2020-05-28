@@ -48,10 +48,15 @@ int main() {
 		sf::Font font;
 		font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 		sf::Text scoreBanner;
+		sf::Text currentTurn;
 		scoreBanner.setFont(font);
 		scoreBanner.setCharacterSize(25);
 		scoreBanner.setFillColor(sf::Color::Black);
+		currentTurn.setFont(font);
+		currentTurn.setCharacterSize(25);
+		currentTurn.setFillColor(sf::Color::Black);
 		std::string scoreText;
+		std::string turnText;
 		sf::ContextSettings windowSettings;
 		windowSettings.antialiasingLevel = 16;
 		sf::RenderWindow window(sf::VideoMode(10 + 110 * dimension, 110 * dimension + 40), "Tic-Tac-Toe", sf::Style::Titlebar | sf::Style::Close, windowSettings);
@@ -92,9 +97,13 @@ int main() {
 		}
 		while(window.isOpen()) {
 			scoreText = "Player " + std::to_string(playerScore) + ":" + std::to_string(botScore) + " Bot";
+			turnText = playerTurn ? "P" : "B";
 			scoreBanner.setString(scoreText);
 			scoreBanner.setOrigin(scoreBanner.getLocalBounds().width / 2, scoreBanner.getLocalBounds().height / 2);
 			scoreBanner.setPosition(static_cast<float>(55 * dimension - 12), 10);
+			currentTurn.setString(turnText);
+			currentTurn.setOrigin(currentTurn.getLocalBounds().width, 0);
+			currentTurn.setPosition(upperBar.getSize().x - 5, 0);
 			sf::Event event;
 			int but = -1;
 			while(window.pollEvent(event)) {
@@ -137,6 +146,7 @@ int main() {
 			}
 			window.draw(upperBar);
 			window.draw(scoreBanner);
+			window.draw(currentTurn);
 			window.display();
 			if(winner == 'p') {
 				++playerScore;
