@@ -1,13 +1,13 @@
 #include <iostream>
 #include "Board.hh"
 #include "Display.hh"
+#include "AI.hh"
 
 int main() {
 	srand(time(NULL));
 	int dimension;
 	int winCondition;
 	char playerTag;
-	char botTag;
 	bool changeSettings;
 	bool playerTurn;
 	do {
@@ -38,13 +38,13 @@ int main() {
 			std::cout << "Tag: ";
 			std::cin >> playerTag;
 		}
-		botTag = playerTag == 'x' ? 'o' : 'x';
 		playerTurn = playerTag == 'x';
 		char winner = 0;
 		int playerScore = 0;
 		int botScore = 0;
 		changeSettings = false;
 		Board board(dimension, winCondition);
+		AI bot(playerTag == 'x' ? 'o' : 'x');
 		sf::Font font;
 		font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 		sf::Text scoreBanner;
@@ -179,9 +179,9 @@ int main() {
 				do {
 					pole = rand() % (dimension * dimension);
 				} while(board(pole / dimension, pole % dimension) != 0);
-				board(pole / dimension, pole % dimension) = botTag;
+				board(pole / dimension, pole % dimension) = bot.getTag();
 				playerTurn = true;
-				if(board.checkWin(botTag)) {
+				if(board.checkWin(bot.getTag())) {
 					winner = 'b';
 				}
 			}
