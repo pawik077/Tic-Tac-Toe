@@ -9,32 +9,33 @@ int main() {
 	char playerTag;
 	bool changeSettings;
 	bool playerTurn;
+	std::cout << "Welcome to Tic-Tac-Toe!\n";
 	do {
-		std::cout << "Dim: ";
+		std::cout << "Enter board dimensions (between 3 and 7): ";
 		std::cin >> dimension;
 		while(std::cin.fail() || dimension < 3 || dimension > 10) {
-			std::cerr << "Wrong dim!" << std::endl;
+			std::cerr << "Incorrect board dimensions!" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
-			std::cout << "Dim: ";
+			std::cout << "Enter board dimensions (between 3 and 7): ";
 			std::cin >> dimension;
 		}
-		std::cout << "Win: ";
+		std::cout << "Enter win condition (between 3 and board dimension): ";
 		std::cin >> winCondition;
 		while(std::cin.fail() || winCondition > dimension || winCondition < 3) {
-			std::cerr << "Wrong win!" << std::endl;
+			std::cerr << "Incorrect win condition!" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
-			std::cout << "Win: ";
+			std::cout << "Enter win condition (between 3 and board dimension): ";
 			std::cin >> winCondition;
 		}
-		std::cout << "Tag: ";
+		std::cout << "Choose your tag (X or O, X always starts): ";
 		std::cin >> playerTag;
 		while(std::cin.fail() || playerTag != 'x' && playerTag != 'X' && playerTag != 'o' && playerTag != 'O') {
-			std::cerr << "Wrong tag!" << std::endl;
+			std::cerr << "Incorrect tag!" << std::endl;
 			std::cin.clear();
 			std::cin.ignore(10000, '\n');
-			std::cout << "Tag: ";
+			std::cout << "Choose your tag (X or O, X always starts): ";
 			std::cin >> playerTag;
 		}
 		playerTurn = playerTag == 'x';
