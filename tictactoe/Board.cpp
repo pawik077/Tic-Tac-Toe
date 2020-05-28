@@ -13,7 +13,7 @@ void Board::clear() {
 			_board[i][j] = 0;
 }
 
-bool Board::checkColumns(int winCond, char tag) {
+bool Board::checkColumns(int winCond, char tag) const {
 	for(int col = 0; col < _dimension; ++col) {
 		std::list<char> win;
 		for(int row = 0; row < _dimension; ++row) {
@@ -25,7 +25,7 @@ bool Board::checkColumns(int winCond, char tag) {
 	return false;
 }
 
-bool Board::checkRows(int winCond, char tag) {
+bool Board::checkRows(int winCond, char tag) const {
 	for(int row = 0; row < _dimension; ++row) {
 		std::list<char> win;
 		for(int col = 0; col < _dimension; ++col) {
@@ -37,7 +37,7 @@ bool Board::checkRows(int winCond, char tag) {
 	return false;
 }
 
-bool Board::checkDiagonals(int winCond, char tag) {
+bool Board::checkDiagonals(int winCond, char tag) const {
 	int x, y;
 	for(int i = 0; i < _dimension - winCond + 1; ++i) {
 		std::list<char> win;
@@ -76,10 +76,10 @@ bool Board::checkDiagonals(int winCond, char tag) {
 	return false;
 }
 
-bool Board::checkWin(int winCond, char tag) {
+bool Board::checkWin(int winCond, char tag) const {
 	return this->checkRows(winCond, tag) || this->checkColumns(winCond, tag) || this->checkDiagonals(winCond, tag);
 }
-bool Board::checkFull() {
+bool Board::checkFull() const {
 	for(int i = 0; i < _dimension; ++i) {
 		for(int j = 0; j < _dimension; ++j) {
 			if(_board[i][j] == 0) return false;

@@ -12,9 +12,9 @@ public:
 	char& operator () (int x, int y) { return _board[x][y]; }
 	const int getDimension() const { return _dimension; };
 	void clear();
-	bool checkColumns(int winCond, char tag);
-	bool checkRows(int winCond, char tag);
-	bool checkDiagonals(int winCond, char tag);
-	bool checkWin(int winCond, char tag);
-	bool checkFull();
+	bool checkColumns(int winCond, char tag) const;
+	bool checkRows(int winCond, char tag) const;
+	bool checkDiagonals(int winCond, char tag) const;
+	bool checkWin(int winCond, char tag) const;
+	bool checkFull() const;
 };
