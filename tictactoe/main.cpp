@@ -44,7 +44,7 @@ int main() {
 		int playerScore = 0;
 		int botScore = 0;
 		changeSettings = false;
-		Board board(dimension);
+		Board board(dimension, winCondition);
 		sf::Font font;
 		font.loadFromFile("C:/Windows/Fonts/arial.ttf");
 		sf::Text scoreBanner;
@@ -168,7 +168,7 @@ int main() {
 				if(board(but / dimension, but % dimension) == 0) {
 					board(but / dimension, but % dimension) = playerTag;
 					playerTurn = false;
-					if(board.checkWin(winCondition, playerTag)) {
+					if(board.checkWin(playerTag)) {
 						winner = 'p';
 					}
 				} else {
@@ -181,7 +181,7 @@ int main() {
 				} while(board(pole / dimension, pole % dimension) != 0);
 				board(pole / dimension, pole % dimension) = botTag;
 				playerTurn = true;
-				if(board.checkWin(winCondition, botTag)) {
+				if(board.checkWin(botTag)) {
 					winner = 'b';
 				}
 			}
