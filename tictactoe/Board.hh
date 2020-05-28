@@ -19,4 +19,5 @@ public:
 	void clear();
 	bool checkWin(char tag) const;
 	bool checkFull() const;
+	std::list<int> getEmpty() const;
 };

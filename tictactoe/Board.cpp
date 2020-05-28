@@ -89,3 +89,14 @@ bool Board::checkFull() const {
 	}
 	return true;
 }
+
+std::list<int> Board::getEmpty() const {
+	std::list<int> emptyFields;
+	for(int i = 0; i < _dimension; ++i) {
+		for(int j = 0; j < _dimension; ++j) {
+			if(_board[i][j] == 0)
+				emptyFields.push_back(i * _dimension + j);
+		}
+	}
+	return emptyFields;
+}
