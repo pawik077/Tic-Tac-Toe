@@ -175,11 +175,7 @@ int main() {
 					but = -1;
 				}
 			} else {
-				int pole;
-				do {
-					pole = rand() % (dimension * dimension);
-				} while(board(pole / dimension, pole % dimension) != 0);
-				board(pole / dimension, pole % dimension) = bot.getTag();
+				bot.move(board);
 				playerTurn = true;
 				if(board.checkWin(bot.getTag())) {
 					winner = 'b';
