@@ -4,7 +4,6 @@
 #include "AI.hh"
 
 int main() {
-	srand(time(NULL));
 	int dimension;
 	int winCondition;
 	char playerTag;
