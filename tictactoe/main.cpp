@@ -20,15 +20,17 @@ int main() {
 			std::cout << "Enter board dimensions (between 3 and 7): ";
 			std::cin >> dimension;
 		}
-		std::cout << "Enter win condition (between 3 and board dimension): ";
-		std::cin >> winCondition;
-		while(std::cin.fail() || winCondition > dimension || winCondition < 3) {
-			std::cerr << "Incorrect win condition!" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(10000, '\n');
-			std::cout << "Enter win condition (between 3 and board dimension): ";
+		if(dimension != 3) {
+			std::cout << "Enter win condition (between 3 and " << dimension << "): ";
 			std::cin >> winCondition;
-		}
+			while(std::cin.fail() || winCondition > dimension || winCondition < 3) {
+				std::cerr << "Incorrect win condition!" << std::endl;
+				std::cin.clear();
+				std::cin.ignore(10000, '\n');
+				std::cout << "Enter win condition (between 3 and " << dimension << "): ";
+				std::cin >> winCondition;
+			}
+		} else winCondition = 3;
 		std::cout << "Choose your tag (X or O, X always starts): ";
 		std::cin >> playerTag;
 		while(std::cin.fail() || playerTag != 'x' && playerTag != 'X' && playerTag != 'o' && playerTag != 'O') {
