@@ -10,4 +10,3 @@ public:
 	const char getTag() { return _botTag; }
 	void move(Board& board);
 };
-

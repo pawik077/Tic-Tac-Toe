@@ -1,6 +1,6 @@
 #include "AI.hh"
 
-int AI::minMax(Board& board, int depth, int alpha, int beta,  bool isMax) {
+int AI::minMax(Board& board, int depth, int alpha, int beta, bool isMax) {
 	char playerTag = _botTag == 'o' ? 'x' : 'o';
 	if(depth == 0) return 0;
 	if(board.checkWin(_botTag)) return 10 + depth;

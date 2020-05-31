@@ -164,7 +164,6 @@ int main() {
 						}
 						if(field(event, dimension, sq) != -1 && playerTurn) {
 							but = field(event, dimension, sq);
-
 						}
 					}
 				}
@@ -194,8 +193,7 @@ int main() {
 				if(gameOver(playerScore, botScore, 'w')) {
 					board.clear();
 					playerTurn = playerTag == 'x';
-				}
-				else
+				} else
 					window.close();
 			} else if(winner == 'b') {
 				++botScore;
@@ -203,15 +201,13 @@ int main() {
 				if(gameOver(playerScore, botScore, 'l')) {
 					board.clear();
 					playerTurn = playerTag == 'x';
-				}
-				else
+				} else
 					window.close();
 			} else if(board.checkFull()) {
 				if(gameOver(playerScore, botScore, 'd')) {
 					board.clear();
 					playerTurn = playerTag == 'x';
-				}
-				else
+				} else
 					window.close();
 			}
 			if(playerTurn) {
