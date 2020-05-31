@@ -189,7 +189,9 @@ int main() {
 					but = -1;
 				}
 			} else {
+				std::cout << "Bot thinking...  ";
 				bot.move(board);
+				std::cout << "Done\n";
 				playerTurn = true;
 				if(board.checkWin(bot.getTag())) {
 					winner = 'b';
