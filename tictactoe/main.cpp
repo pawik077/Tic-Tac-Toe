@@ -40,6 +40,8 @@ int main() {
 			std::cout << "Choose your tag (X or O, X always starts): ";
 			std::cin >> playerTag;
 		}
+		std::cout << "Generating GUI...\n";
+		std::cout << "Click on the upper bar to change settings\n";
 		playerTurn = playerTag == 'x';
 		char winner = 0;
 		int playerScore = 0;
