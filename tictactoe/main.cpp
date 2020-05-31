@@ -9,17 +9,53 @@ int main() {
 	char playerTag;
 	bool changeSettings;
 	bool playerTurn;
+	bool cancel;
 	std::cout << "Welcome to Tic-Tac-Toe!\n";
 	do {
-		std::cout << "Enter board dimensions (between 3 and 7): ";
-		std::cin >> dimension;
-		while(std::cin.fail() || dimension < 3 || dimension > 10) {
-			std::cerr << "Incorrect board dimensions!" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(10000, '\n');
-			std::cout << "Enter board dimensions (between 3 and 7): ";
+		cancel = false;
+		do {
+			std::cout << "Enter board dimensions (larger than 3): ";
 			std::cin >> dimension;
-		}
+			while(std::cin.fail() || dimension < 3 || dimension > 10) {
+				std::cerr << "Incorrect board dimensions!" << std::endl;
+				std::cin.clear();
+				std::cin.ignore(10000, '\n');
+				std::cout << "Enter board dimensions (larger than 3): ";
+				std::cin >> dimension;
+			}
+			if(dimension > 6) {
+				std::string choice = "";
+				std::cout << "WARNING!\n";
+				std::cout << "Using large board dimensions may cause the bot to take a long to make the move.\n";
+				std::cout << "Furthermore, large boards may not fit on low-to-medium resolution screens\n";
+				std::cout << "Are you sure you want to continue (y/N): ";
+				std::cin.clear();
+				std::cin.ignore(10000, '\n');
+				getline(std::cin, choice);
+				if(std::cin.fail() || choice[0] != 'y' && choice[0] != 'Y' && choice[0] != 'n' && choice[0] != 'N' && choice != "") {
+					std::cerr << "Unknown option!" << std::endl;
+					std::cin.clear();
+					std::cin.ignore(10000, '\n');
+					std::cout << "Are you sure you want to continue (y/N): ";
+					choice = "";
+					getline(std::cin, choice);
+				}
+				switch(choice[0]) {
+					case 'n':
+					case 'N':
+					case '\0':
+						cancel = true;
+						break;
+					case 'y':
+					case 'Y':
+					case 't':
+					case 'T':
+						std::cout << "Consider yourself warned\n";
+						cancel = false;
+						break;
+				}
+			}
+		} while(cancel);
 		if(dimension != 3) {
 			std::cout << "Enter win condition (between 3 and " << dimension << "): ";
 			std::cin >> winCondition;
