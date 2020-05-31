@@ -40,7 +40,11 @@ int AI::minMax(Board& board, int depth, int alpha, int beta,  bool isMax) {
 void AI::move(Board& board) {
 	int bestScore = -1000000;
 	int bestMove = -1;
-	int depth = static_cast<int>(1.4 * board.getDimension() - board.getWinCond());
+	int depth;
+	if(board.getDimension() == board.getWinCond())
+		depth = static_cast<int>(1.8 * board.getDimension() - board.getWinCond());
+	else
+		depth = static_cast<int>(1.4 * board.getDimension() - board.getWinCond());
 	std::list<int> moves = board.getEmpty();
 	for(int move : moves) {
 		board(move / board.getDimension(), move % board.getDimension()) = _botTag;
