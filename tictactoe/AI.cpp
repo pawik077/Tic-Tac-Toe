@@ -11,7 +11,6 @@ int AI::minMax(Board& board, int depth, int alpha, int beta,  bool isMax) {
 		std::list<int> moves = board.getEmpty();
 		for(int move : moves) {
 			board(move / board.getDimension(), move % board.getDimension()) = _botTag;
-			std::cout << "bot calc";
 			int solution = minMax(board, depth - 1, alpha, beta, !isMax);
 			board(move / board.getDimension(), move % board.getDimension()) = 0;
 			best = best > solution ? best : solution;
@@ -25,7 +24,6 @@ int AI::minMax(Board& board, int depth, int alpha, int beta,  bool isMax) {
 		std::list<int> moves = board.getEmpty();
 		for(int move : moves) {
 			board(move / board.getDimension(), move % board.getDimension()) = playerTag;
-			std::cout << "player calc";
 			int solution = minMax(board, depth - 1, alpha, beta, !isMax);
 			board(move / board.getDimension(), move % board.getDimension()) = 0;
 			best = best < solution ? best : solution;
