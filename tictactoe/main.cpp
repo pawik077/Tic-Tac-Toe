@@ -14,13 +14,13 @@ int main() {
 	do {
 		cancel = false;
 		do {
-			std::cout << "Enter board dimensions (larger than 3): ";
+			std::cout << "Enter board dimensions (3 or more): ";
 			std::cin >> dimension;
 			while(std::cin.fail() || dimension < 3 || dimension > 10) {
 				std::cerr << "Incorrect board dimensions!" << std::endl;
 				std::cin.clear();
 				std::cin.ignore(10000, '\n');
-				std::cout << "Enter board dimensions (larger than 3): ";
+				std::cout << "Enter board dimensions (3 or more): ";
 				std::cin >> dimension;
 			}
 			if(dimension > 6) {
